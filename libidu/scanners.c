@@ -1054,12 +1054,13 @@ get_token_javascript (FILE *in_FILE, void const *args, int *flags)
         /* If this string's contents are an identifier longer than one
            character, or would be if we included the "SK" characters, then we
            return that as a token. */
-        const char *start = obstack_base(&tokens_obstack) + OFFSETOF_TOKEN_NAME;
+        const char *start = ((char *) obstack_base(&tokens_obstack)
+			     + OFFSETOF_TOKEN_NAME);
         const char *end = obstack_next_free(&tokens_obstack);
         if (end >= start + 1) {
           const char *p;
           for (p = start; p < end; p++)
-            if (!JS_STRINGY_IDENT_PART(*p))
+            if (!JS_STRINGY_IDENT_PART((int)*p))
               break;
           if (p == end) {
             obstack_1grow (&tokens_obstack, '\0');
@@ -1079,7 +1080,6 @@ get_token_javascript (FILE *in_FILE, void const *args, int *flags)
 
   case SS:
     {
-      int first = next;
       next = getc (in_FILE);
       if (in_e4x_tag) {
         if (next == '>') {
@@ -1146,7 +1146,7 @@ get_token_javascript (FILE *in_FILE, void const *args, int *flags)
             break;
           }
           next = getc (in_FILE);
-        } while (next != '/');
+        } while (!in_class && next != '/');
 
         /* Scan past any flags following the regexp. */
         do
