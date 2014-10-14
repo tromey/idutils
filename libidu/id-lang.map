@@ -53,6 +53,11 @@
 *.cpp			C++
 *.cxx			C++
 
+# Firefox IDL is C-ish.
+*.idl			C
+*.widl			C
+*.webidl		C
+
 *.java			Java
 
 *.js                    JavaScript
