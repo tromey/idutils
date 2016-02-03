@@ -1,5 +1,5 @@
 /* walker.c -- nifty file-tree walker
-   Copyright (C) 1986-2014 Free Software Foundation, Inc.
+   Copyright (C) 1986-2014, 2016 Free Software Foundation, Inc.
    Written by Greg McGary <gkm@gnu.ai.mit.edu>
 
    This program is free software; you can redistribute it and/or modify
@@ -477,7 +477,7 @@ print_member_file (struct member_file *member)
 static char **langs_included;
 static char **langs_excluded;
 
-static int
+static int _GL_ATTRIBUTE_PURE
 lang_wanted (char const *lang_name)
 {
   if (langs_excluded)
