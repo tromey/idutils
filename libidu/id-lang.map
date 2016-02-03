@@ -34,6 +34,8 @@
 # C dependencies created by automake
 */.deps/*		IGNORE
 
+*/.git			IGNORE
+
 *.h			C
 *.h.in			C
 *.in.h			C
