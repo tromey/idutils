@@ -59,6 +59,7 @@
 *.idl			C
 *.widl			C
 *.webidl		C
+*.ipdl			C
 
 *.java			Java
 
