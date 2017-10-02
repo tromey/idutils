@@ -30,6 +30,7 @@
 ;;; them in your .emacs file.
 
 (require 'compile)
+(require 'grep)
 (require 'thingatpt)
 
 (defvar gid-command "gid" "The command run by the gid function.")
@@ -54,7 +55,7 @@ defined by the gid-command variable."
   (interactive (list (read-shell-command
      (concat "Run " gid-command " (with args): ") (thing-at-point 'symbol))))
   (let (compile-command
-	(compilation-error-regexp-alist grep-regexp-alist)
+	(compilation-error-regexp-alist (grep-regexp-alist))
 	(compilation-directory default-directory)
 	(gid-full-buffer-name (concat "*gid-" args "*")))
     (save-some-buffers (not compilation-ask-about-save) nil)
